@@ -1,0 +1,24 @@
+"use client"
+
+import React from 'react'
+import { useRouter } from 'next/navigation'
+
+
+
+function Header() {
+  const router = useRouter()
+
+  return (
+    <div className="header-outer-container  ">
+      <div className="header-wrapper ">
+        <div onClick={()=>{router.push('/')}} className="header-elements">Home</div>
+        <div onClick={()=>{router.push('/login')}} className="header-elements">Login</div>
+        <div onClick={()=>{router.push('/register')}} className="header-elements">Sign up</div>
+        <div onClick={()=>{router.push('/shoes')}} className="header-elements">Shoes</div>
+      </div>
+    </div>  
+
+  )
+}
+
+export default Header
