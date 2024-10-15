@@ -21,3 +21,11 @@ export async function requestPost(data){
   const response = await axios.post(url, data)
   return response
 }
+
+
+export async function requestPosts(page) {
+  const url = `http://localhost:4000/post?page=${page}`;
+
+  const response = await axios.get(url)
+  return response
+}

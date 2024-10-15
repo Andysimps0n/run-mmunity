@@ -3,9 +3,10 @@ const app = express();
 const router = express.Router()
 app.use(express.json());
 
-const { handlePost } = require('../handlers/handlePost')
+const { handlePost,handleGetPost } = require('../handlers/handlePost')
 
 router.post('/write', handlePost());
+router.get('/all', handleGetPost());
 
 
 

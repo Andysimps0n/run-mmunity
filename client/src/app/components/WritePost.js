@@ -17,13 +17,13 @@ function WritePost(props) {
         if (response.data.isPosted) {
             setModaltoFalse()
         }
+        const {fetchIntoState} = props
+        fetchIntoState()
     };
 
   return (
     <>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"></link>
-        
-    
             <div className="write-post-outer-container ">
                     <div className="post-input-container ">
                         <textarea className='post-input' onChange={(e)=>{setData(e.target.value)}}></textarea>

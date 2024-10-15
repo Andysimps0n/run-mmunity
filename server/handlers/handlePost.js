@@ -13,4 +13,24 @@ function handlePost(){
   }
 }
 
-module.exports = {handlePost}
+
+  function handleGetPost() {
+    return async (req, res) => {
+
+      const page = req.query.page
+      const limit = page  
+
+      try {
+        const data = await Posts.findAll({
+          limit : page * 7,
+          offset : (page - 1) * 7
+        })
+        res.send({data})
+      } catch {
+        res.send({message : "Data fetching Failed"})
+      }
+
+    }
+  }
+
+module.exports = {handlePost, handleGetPost}
