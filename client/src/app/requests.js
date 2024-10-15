@@ -24,7 +24,7 @@ export async function requestPost(data){
 
 
 export async function requestPosts(page) {
-  const url = `http://localhost:4000/post?page=${page}`;
+  const url = `http://localhost:4000/post/all?page=${page}`;
 
   const response = await axios.get(url)
   return response

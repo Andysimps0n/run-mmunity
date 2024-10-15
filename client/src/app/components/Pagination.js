@@ -7,7 +7,7 @@ function Pagination(props) {
     <div className="post-pagination-container">
         <div className="post-pagination">
 
-          <div className="pagination-fbackwards" onClick={()=>{setPage(page + 1)}}>
+          <div className="pagination-fbackwards" onClick={()=>{props.setPage(props.page - 1)}}>
             <div className="material-icons" id="arrow">arrow_back_ios</div>
           </div>
 
@@ -17,7 +17,7 @@ function Pagination(props) {
 
 
 
-          <div className="pagination-fbackwards" onClick={()=>{setPage(page - 1)}}>
+          <div className="pagination-fbackwards" onClick={()=>{props.setPage(props.page + 1)}}>
             <div className="material-icons" id="arrow">arrow_forward_ios</div>
           </div>
 
