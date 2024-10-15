@@ -17,8 +17,8 @@ function handlePost(){
   function handleGetPost() {
     return async (req, res) => {
 
-      const page = req.query.page
-      const limit = page  
+      const page = req.query.page ?? 1
+
 
       try {
         const data = await Posts.findAll({

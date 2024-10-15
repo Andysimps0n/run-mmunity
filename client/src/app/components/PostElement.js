@@ -2,7 +2,7 @@ import React from 'react'
 
 function PostElement(props) {
   return (
-    <div className="post"> 
+    <div key={props.id} className="post"> 
     <div className="post-wrapper ">
       <div className="post-text">
         <div>{props.text}</div>
