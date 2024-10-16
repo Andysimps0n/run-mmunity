@@ -333,11 +333,14 @@ a {
 .post {
   height: 100%;
   margin: 0 auto;
-  width: 100%;
+  width: 282px;
   border-radius: 5px;
   background-color: #4F001E;
   transition: all 0.2s;
   color: #ffffff;
+
+  word-wrap: break-word; /* or overflow-wrap */
+
 
 }
 
@@ -432,7 +435,7 @@ a {
 }
 
 .post-text {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 600;
   height: 65%;
   overflow: hidden;
@@ -463,10 +466,13 @@ a {
 }
 
 .post-reaction-wrapper {
-  width: 23%;
+  width: 14%;
+  margin-right: 10%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
+  z-index: 999;
 }
 
 .write-post-outer-container {
@@ -482,6 +488,7 @@ a {
 .write-post-text {
   width: 20vw;
   height: 20vh;
+  word-wrap: break-word; /* or overflow-wrap */
 
   margin-top: 5%;
   background-color: #4F001E;

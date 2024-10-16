@@ -29,3 +29,10 @@ export async function requestPosts(page) {
   const response = await axios.get(url)
   return response
 }
+
+export async function requestLike(data) {
+  const url = `http://localhost:4000/post/like`;
+
+  const response = await axios.post(url, data)
+  return response
+}

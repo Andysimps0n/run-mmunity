@@ -39,7 +39,7 @@ function page() {
         <PostHeader></PostHeader>
 
         <div className="posts-container ">
-          {postData.map((element,i)=>{return(<PostElement key={i} text={element.text}></PostElement>)})}
+          {postData.map((element,i)=>{return(<PostElement id={element.id} text={element.text} like={element.like}></PostElement>)})}
           <div onClick={()=>{setWritingPostModalBool(true)}} id="create-post" className="post">
             <div className="material-icons" id="add-post">add_comment</div>
           </div>
