@@ -13,7 +13,6 @@ import Header from '../components/Header'
 function page() {
 
   const [postData, setPostData] = useState([])
-  const dummyData =  new Array(7).fill("What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing");
   const [writingPostModalBool, setWritingPostModalBool] = useState(false)
   const [page, setPage] = useState(1)
 
@@ -39,7 +38,12 @@ function page() {
         <PostHeader></PostHeader>
 
         <div className="posts-container ">
-          {postData.map((element,i)=>{return(<PostElement id={element.id} text={element.text} like={element.like}></PostElement>)})}
+          {postData.map((element,i)=>{
+            return(
+            <PostElement id={element.id} text={element.text} like={element.like} fetchIntoState={fetchIntoState}></PostElement>
+            )})}
+
+
           <div onClick={()=>{setWritingPostModalBool(true)}} id="create-post" className="post">
             <div className="material-icons" id="add-post">add_comment</div>
           </div>

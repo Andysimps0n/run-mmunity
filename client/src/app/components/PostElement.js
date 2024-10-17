@@ -5,11 +5,18 @@ import {React, useState} from 'react'
 import { requestLike } from '../requests';
 function PostElement(props) {
 
-  const handleLikeClick = (id)=>{
-    console.log(id)
-  }
-
   const [hasLiked, setHasLiked] = useState(false);
+  const [likeClass, setLikeClass] = useState(false);
+
+  const handleLikeClick = async (id)=>{
+    const data = {id : props.id, hasLikedBool : !hasLiked}
+    const response = await requestLike(data)
+    props.fetchIntoState()
+    
+    setHasLiked(!hasLiked)
+    setLikeClass(!likeClass)
+    console.log(`hasliked : ${hasLiked}, likeClass : ${likeClass}`)
+  }
 
 
 
@@ -22,9 +29,9 @@ function PostElement(props) {
       </div>
 
       <div className="post-reactions">
-        <div className="post-reaction-wrapper border" onClick={()=>(requestLike(props.id))}>
-          <div className="material-icons" id="favorite">favorite</div>
-          <div>{props.like}</div>
+        <div className="post-reaction-wrapper border" onClick={()=>(handleLikeClick())}>
+          <div className={`material-icons ${likeClass ? "red-like" : null}`} id="favorite">favorite</div>
+          <div>{props.like ? props.like : 'x'}</div>
         </div>
         <div className="post-reaction-wrapper border">
           <div className="material-icons" id="chat_bubble">chat_bubble</div>

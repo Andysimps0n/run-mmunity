@@ -33,4 +33,24 @@ function handlePost(){
     }
   }
 
-module.exports = {handlePost, handleGetPost}
+  function handleLike() {
+    return async (req, res ) => {
+      const {id} = req.body
+      const {hasLikedBool} = req.body
+
+      const row = await Posts.findOne({where : {id : id}})
+      const currentLike = row.like
+      const newLike = hasLikedBool ? currentLike + 1 : currentLike - 1
+
+      await Posts.update(
+        {like : newLike},
+        {where : {id : id}}
+      )
+
+
+
+      res.send({message : newLike})
+    }
+  }
+
+module.exports = {handleLike, handlePost, handleGetPost}
