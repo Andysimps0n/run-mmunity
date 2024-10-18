@@ -608,3 +608,23 @@ input, textarea {
 .red-like {
   color: #EE4266;
 }
+
+.join-outer-most-container {
+  width: 40vw;
+  height: 100vh;
+  box-sizing: border-box;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+.map-container  {
+  width: 100%;
+  height: 50%;
+
+  background-color: #000000;
+}
