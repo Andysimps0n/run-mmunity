@@ -3,26 +3,23 @@ import {React, useRef, useEffect} from 'react'
 
 function Map() {
 
-  const mapRef = useRef(null)
+  const mapContainer = useRef(null); // Create a ref to hold the map div
 
-  useEffect(()=>{
-    const options = {
-      center : new window.kakao.maps.LatLng(3,3),
-      level : 3
+  useEffect(() => {
+    if (window.kakao && window.kakao.maps) { // Check if Kakao Maps is loaded
+      const options = {
+        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+      };
+      new window.kakao.maps.Map(mapContainer.current, options);
     }
-
-    const map = new window.kakao.maps.Map(mapRef, options)
-  },[])
-
-
-
+  }, []);
 
 
   return (
     <div>
-      <Script
-        src={"//dapi.kakao.com/v2/maps/sdk.js?appkey=ca0517e212eef9e2b05b7cb7b27e8bb4"}
-      ></Script>
+
+      <div ref={mapContainer} className='map'></div> {/* Ref attached here */}
     </div>
   )
 }
