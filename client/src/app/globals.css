@@ -101,7 +101,7 @@ body::-webkit-scrollbar {
 
 
 .border {
-  border: 1px rgb(255, 251, 0) solid;
+  border: 1px rgb(76, 0, 255) solid;
 }
 
 .subtitle-wrapper {
@@ -600,25 +600,47 @@ input, textarea {
 
 .map-sideBar-container {
   position: absolute;
-  left: 3%;
-  top: 20%;
-  background-color: #131313;
-  width: 18%;
-  height: 60%;
-
+  left: 0;
+  top: 8vh;
+  background-color: #ffffff;
+  /* width: 13%; */
+  width: 3.5%;
+  height: 100%;
   position: absolute;
-
   z-index: 99;
-  border-radius: 7px;
-  box-shadow: 0 0 7px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.3);
 
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.2s;
 }
 
 .map-sideBar-wrapper {
   width: 80%;
   height: 86%;
+}
+
+.menu-wrapper {
+  width: 90%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 16px auto;
+
+  transition: all 0.2s;
+}
+
+.menu-wraper-extend {
+  justify-content: right;
+
+}
+
+#menu {
+  font-size: 30px;
+  color: black;
+}
+
+.extended { 
+  width: 13%;
 }
