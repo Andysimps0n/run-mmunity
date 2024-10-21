@@ -11,7 +11,7 @@ function WritePost(props) {
 
     const setModaltoFalse = () => {props.setWritingPostModalBool(false)};
     const handlePost = async () => {
-        const response = await requestPost({text : data, like : null});
+        const response = await requestPost({text : data, like : 0});
         if (response.data.isPosted) {setModaltoFalse()}
         const {fetchIntoState} = props
         fetchIntoState()
