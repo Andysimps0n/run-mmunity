@@ -29,19 +29,11 @@ function PostElement(props) {
       </div>
 
       <div className="post-reactions">
-<<<<<<< HEAD
         <div className="post-reaction-wrapper  " onClick={()=>(handleLikeClick())}>
           <div className={`material-icons ${likeClass ? "red-like" : null}`} id="favorite">favorite</div>
-          <div>{props.like ? props.like : 'x'}</div>
+          <div>{props.like ? props.like : 0}</div>
         </div>
         <div className="post-reaction-wrapper  ">
-=======
-        <div className="post-reaction-wrapper" onClick={()=>(handleLikeClick())}>
-          <div className={`material-icons ${likeClass ? "red-like" : null}`} id="favorite">favorite</div>
-          <div>{props.like ? props.like : 'x'}</div>
-        </div>
-        <div className="post-reaction-wrapper">
->>>>>>> a81ef98c0b61662a426911d0427eae34bfc49ad8
           <div className="material-icons" id="chat_bubble">chat_bubble</div>
           <div> 0</div>
 
