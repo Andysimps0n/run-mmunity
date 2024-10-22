@@ -23,7 +23,7 @@ function handlePost(){
       try {
         const data = await Posts.findAll({
           limit : page * 7,
-          offset : (page - 1) * 7
+          offset : (page - 1) * 8
         })
         res.send({data})
       } catch {
