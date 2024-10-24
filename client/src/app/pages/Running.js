@@ -19,7 +19,7 @@ function Running() {
         <div className="button-container">
             <div className="button-wrapper">
               <div onClick={()=>{router.push('/join')}} className="button1 no-select">Join</div>
-              <div onClick={()=>{router.push('/shoes')}} className="button1 no-select">Shoes</div>
+              {/* <div onClick={()=>{router.push('/shoes')}} className="button1 no-select">Shoes</div> */}
             </div>
         </div>
       </div>
