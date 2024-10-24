@@ -7,7 +7,8 @@ import Header from './Header';
 import MapSideBar from './MapSideBar';
 import MapModal from './MapModal';
 import { distanceMode } from '../mapDistance';
-import distanceOnCLick from '../hooks/distanceOnClick';
+import distanceOnCLick from '../hooks/mapDistance/distanceOnClick';
+import distanceWrapper from '../hooks/mapDistance/distanceWrapper';
 
 const Map = () => {
   const mapContainer = useRef(null);
@@ -25,15 +26,12 @@ const Map = () => {
 
       const map = new window.kakao.maps.Map(mapContainer.current, mapOption);
       
-      window.kakao.maps.event.addListener(map, 'click', distanceOnCLick())
-      
+      distanceWrapper(map, mapContainer)
+      {isDistanceMode ? distanceWrapper(map, mapContainer) : null}
       
     }
   }, []); 
-  
-  const mapDistanceMode = ()=>{
-    console.log('distance clicked');
-  }
+
 
 
   return (
