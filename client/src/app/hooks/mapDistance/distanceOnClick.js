@@ -51,7 +51,7 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
         });
 
         // 지도에 표시합니다
-        distanceOverlay.setMap(map);
+        distanceOverlay.setMap(mapObject.map);
     }
 
     // 배열에 추가합니다
@@ -97,7 +97,7 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
 
     mapObject.clickLine.setPath(path)
 
-    let distance = Math.round(clickLine.getLength());
+    let distance = Math.round(mapObject.clickLine.getLength());
     displayCircleDot(clickPosition, distance);
   }
 
