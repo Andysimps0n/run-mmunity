@@ -14,7 +14,7 @@ export default function disatnceWrapper(map, mapContainer) {
   const mapObject = {
     drawingFlag : false,
     moveLine : {},
-    clickLine : {},
+    clickLine : null,
     distanceOverlay : null,
     dots : {},
     map : map

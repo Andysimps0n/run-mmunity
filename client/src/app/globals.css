@@ -5,7 +5,7 @@ body {
   color: white;
   background-size: cover; /* Or "contain" if you want the whole image to fit */
   margin: 0;
-  user-select: none;
+  /* user-select: none; */
 
 }
 
@@ -705,19 +705,22 @@ input, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  transition: background-color 0.2s;
   border-radius: 3px;
   font-weight: 600;
 }
 
 .map-dropdown-element-appear {
   transition-delay: 0s; /* Add delay of 0.2s */
-
 }
 
 
 .map-dropdown-element-appear {
   opacity: 100%;
+}
+
+.map-dropdown-element-appear:hover {
+  background-color: #1c509c;
 }
 
 
@@ -852,4 +855,35 @@ input, textarea {
 
   z-index: 9;
 
+}
+
+
+.distance-container {
+
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: #2326e6;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dotOverlay {
+  margin: 0;
+  padding: 0;
+}
+
+.distanceInfo {
+  margin: 0;
+}
+
+.hover-distance-container {
+  color: white;
+  background-color: #2326e6;
+
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px;
+  border-radius: 3px;
 }

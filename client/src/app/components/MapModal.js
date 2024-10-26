@@ -1,6 +1,6 @@
 "use client"
 import { useSelector, useDispatch } from 'react-redux'
-import { turnOn, turnOff } from '../store'
+import { turnOn, turnOff, turnDistanceOn } from '../store'
 import {React, useState} from 'react'
 
 function MapModal() {
@@ -8,6 +8,10 @@ function MapModal() {
   const dispatch = useDispatch();
   const [carouselPage, setCarouselPage] = useState(0)
   const [dontShowIcon, setDontShowIcon] = useState(false)
+  const handleOk = ()=>{
+    dispatch(turnOff())
+    dispatch(turnDistanceOn())
+  }
 
   return (
     <div className="map-modal-background">
@@ -48,7 +52,7 @@ function MapModal() {
         </div>
 
         <div className="map-modal-ok-wrapper ">
-          <div className="map-modal-ok" onClick={()=>{dispatch(turnOff())}}>Ok</div>
+          <div className="map-modal-ok" onClick={()=>{handleOk()}}>Ok</div>
         </div>
 
       </div>

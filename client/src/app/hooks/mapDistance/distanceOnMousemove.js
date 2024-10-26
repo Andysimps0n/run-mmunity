@@ -38,7 +38,7 @@ export default function distanceOnMousemove(mouseEvent, mapObject) {
 
 
     let distance = Math.round(mapObject.clickLine.getLength() + mapObject.moveLine.getLength()) // 선의 총 거리를 계산합니다
-    let content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+    let content = '<div class="dotOverlay distanceInfo">Total distance :  <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
 
     showDistance(content, mousePosition)
   }

@@ -1,16 +1,62 @@
 export default function distanceOnCLick(mouseEvent, mapObject, functions) {
   const clickPosition = mouseEvent.latLng;
+  
+  if (!mapObject.drawingFlag) {
+    
+    //  Drawing Line : Init
+    mapObject.drawingFlag = true;
+    deleteClickLine();
+    deleteDistance();
+    deleteCircleDot();
+
+
+    // Draw line (clicked)
+    mapObject.clickLine = new kakao.maps.Polyline({
+      map: mapObject.map,
+      path : [clickPosition],
+      strokeWeight : 5,
+      strokeColor : "#1670f7",
+      strokeOpacity : 1,
+      strokeStyle : 'solid'
+    })
+
+
+    // Draw line (on hover)
+    mapObject.moveLine = new kakao.maps.Polyline({
+      strokeWeight: 5,  
+      strokeColor: '#1670f7', 
+      strokeOpacity: 0.2, 
+      strokeStyle: 'solid'    
+    })
+
+    displayCircleDot(clickPosition, 0);
+
+
+    // Drawing line : drawing
+  } else {
+
+    let path = mapObject.clickLine.getPath();
+    path.push(clickPosition)
+
+    mapObject.clickLine.setPath(path)
+
+    let distance = Math.round(mapObject.clickLine.getLength());
+    displayCircleDot(clickPosition, distance);
+  }
+
+
 
   function deleteClickLine() {
-    if (mapObject.clickLine) {
-        // mapObject.clickLine.setMap(null);    
-        mapObject.clickLine = null;        
-    }
+      if (mapObject.clickLine) {
+          mapObject.clickLine.setMap(null);    
+          mapObject.clickLine = null;        
+      }
   }
 
   function deleteDistance () {
     if (mapObject.distanceOverlay) {
         mapObject.distanceOverlay.setMap(null);
+        console.log('this is delete distance')
         mapObject.distanceOverlay = null;
     }
   } 
@@ -44,7 +90,7 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
     if (distance > 0) {
         // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
         var distanceOverlay = new kakao.maps.CustomOverlay({
-            content: '<div class="dotOverlay">거리 <span class="number">' + distance + '</span>m</div>',
+            content: '<div class="dotOverlay hover-distance-container"> <span class="number">' + distance + '</span>m</div>',
             position: position,
             yAnchor: 1,
             zIndex: 2
@@ -57,51 +103,6 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
     // 배열에 추가합니다
     mapObject.dots.push({circle:circleOverlay, distance: distanceOverlay});
 }
-  
-  if (!mapObject.drawingFlag) {
-    
-    //  Drawing Line : Init
-    mapObject.drawingFlag = true;
-    deleteClickLine();
-    deleteDistance();
-    deleteCircleDot();
-
-
-    // Draw line (clicked)
-    mapObject.clickLine = new kakao.maps.Polyline({
-      map: mapObject.map,
-      path : [clickPosition],
-      strokeWeight : 3,
-      strokeColor : "#1670f7",
-      strokeOpacity : 1,
-      strokeStyle : 'solid'
-    })
-
-
-    // Draw line (on hover)
-    mapObject.moveLine = new kakao.maps.Polyline({
-      strokeWeight: 3,  
-      strokeColor: '#db4040', 
-      strokeOpacity: 0.5, 
-      strokeStyle: 'solid'    
-    })
-
-    displayCircleDot(clickPosition, 0);
-
-
-    // Drawing line : drawing
-  } else {
-
-    let path = mapObject.clickLine.getPath();
-    path.push(clickPosition)
-
-    mapObject.clickLine.setPath(path)
-
-    let distance = Math.round(mapObject.clickLine.getLength());
-    displayCircleDot(clickPosition, distance);
-  }
-
-
 }
 
 
