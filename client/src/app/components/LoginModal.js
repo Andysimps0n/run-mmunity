@@ -9,7 +9,6 @@ function LoginModal(props) {
 
   const clickHandler = ()=>{
     setModalSwitch(false)
-    router.push('/posts')
 
   }
 
