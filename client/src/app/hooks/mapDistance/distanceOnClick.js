@@ -81,7 +81,7 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
     // Draw line (on hover)
     mapObject.moveLine = new kakao.maps.Polyline({
       strokeWeight: 3,  
-      strokeColor: '#db4040', 
+      strokeColor: '#659aeb', 
       strokeOpacity: 0.5, 
       strokeStyle: 'solid'    
     })

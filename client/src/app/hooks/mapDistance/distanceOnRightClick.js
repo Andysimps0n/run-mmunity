@@ -5,31 +5,9 @@ export default function distanceOnRightLick(mouseEvent, mapObject) {
 
   function getTimeHTML(distance) {
 
-    var walkkTime = distance / 67 | 0;
-    var walkHour = '', walkMin = '';
-
-    if (walkkTime > 60) {
-        walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
-    }
-    walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
-
-    var bycicleTime = distance / 227 | 0;
-    var bycicleHour = '', bycicleMin = '';
-    // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
-    if (bycicleTime > 60) {
-        bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
-    }
-    bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
-
     var content = '<ul class="dotOverlay distanceInfo">';
     content += '    <li>';
     content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
-    content += '    </li>';
-    content += '    <li>';
-    content += '        <span class="label">도보</span>' + walkHour + walkMin;
-    content += '    </li>';
-    content += '    <li>';
-    content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
     content += '    </li>';
     content += '</ul>'
 
