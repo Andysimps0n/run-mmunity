@@ -6,10 +6,8 @@ export default function distanceOnRightLick(mouseEvent, mapObject) {
   function getTimeHTML(distance) {
 
     var content = '<ul class="dotOverlay distanceInfo">';
-    content += '    <li>';
-    content += '        <span class="label">총거리</span><span class="number">' + distance + '</span>m';
-    content += '    </li>';
-    content += '</ul>'
+    content += '        <div class="distance-container">Total distance: <span class="distance-container">' + distance + '</span>m </div>';
+    content += '   </ul>'
 
     return content;
   
