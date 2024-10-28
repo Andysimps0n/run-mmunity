@@ -13,7 +13,6 @@ export default function distanceOnMousemove(mouseEvent, mapObject) {
         
     } else { // 커스텀 오버레이가 생성되지 않은 상태이면
         
-        // 커스텀 오버레이를 생성하고 지도에 표시합니다
         mapObject.distanceOverlay = new kakao.maps.CustomOverlay({
             map: mapObject.map, // 커스텀오버레이를 표시할 지도입니다
             content: content,  // 커스텀오버레이에 표시할 내용입니다
@@ -38,7 +37,7 @@ export default function distanceOnMousemove(mouseEvent, mapObject) {
 
 
     let distance = Math.round(mapObject.clickLine.getLength() + mapObject.moveLine.getLength()) // 선의 총 거리를 계산합니다
-    let content = '<div class="dotOverlay distanceInfo">Total distance :  <span class="number">' + distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
+    let content = null; // 커스텀오버레이에 추가될 내용입니다
 
     showDistance(content, mousePosition)
   }

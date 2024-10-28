@@ -24,16 +24,32 @@ const isDistanceModeSlice = createSlice({
 })
 
 
+const isDrawing = createSlice({
+  name : "isDrawing",
+  initialState : {
+    value : false
+  },
+  reducers : {
+    setIsDrawing : (state, action) => {
+      state.value = action.payload
+    }
+  }
+})
+
+
 
 
 
 export const {turnOn, turnOff} = mapModalSlice.actions;
 export const {turnDistanceOn, turnDistanceOff} = isDistanceModeSlice.actions;
+export const {setIsDrawing} = isDrawing.actions;
+
 
 const store = configureStore({
   reducer : {
    mapModal : mapModalSlice.reducer,
-   isDistanceMode : isDistanceModeSlice.reducer 
+   isDistanceMode : isDistanceModeSlice.reducer,
+   isDrawing : isDrawing.reducer
   }
 })
 

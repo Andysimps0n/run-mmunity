@@ -5,7 +5,7 @@ body {
   color: white;
   background-size: cover; /* Or "contain" if you want the whole image to fit */
   margin: 0;
-  /* user-select: none; */
+  user-select: none;
 
 }
 
@@ -606,8 +606,7 @@ input, textarea {
   background-color: #ffffff;
   /* width: 13%; */
   width: 3.5%;
-  height: 100%;
-  position: absolute;
+  height: 92vh;
   z-index: 99;
   box-shadow: 0 0 7px 7px rgba(0, 0, 0, 0.3);
 
@@ -652,12 +651,12 @@ input, textarea {
   margin: 10px auto;
   display: flex;
   justify-content: right;
-  transition: height 0.2s;
+  transition: all 0.2s;
 }
 
 
 .map-dropdown-container-extend {
-  height: 23%;
+  height: fit-content;
 }
 
 .map-dropdown-title {
@@ -863,7 +862,7 @@ input, textarea {
   border-radius: 5px;
   padding: 5px;
   color: white;
-  background-color: #2326e6;
+  background-color: #000000;
 
   font-size: 15px;
   font-weight: 600;
@@ -880,10 +879,68 @@ input, textarea {
 
 .hover-distance-container {
   color: white;
-  background-color: #2326e6;
+  background-color: #000008;
 
   font-size: 14px;
   font-weight: 600;
   padding: 4px;
   border-radius: 3px;
+}
+
+.positionRel {
+  position: relative;
+}
+
+.positionAbs {
+  position: absolute;
+}
+
+.distance-menu-container {
+  width: 83%;
+  height: 6vh;
+  box-sizing: border-box;
+  border: 2px solid#1670f7;
+  border-radius: 10px;
+
+}
+.distance-menu-element {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  font-size: 17px;
+  color: #1670f7;
+
+  transition: all 0.2s;
+}
+
+.distance-menu-element:hover {
+  background-color: rgba(40, 40, 40, 0.1);
+}
+
+.distance-menu-warpper .distance-menu-element:nth-child(1) {
+  border-radius: 3px 0 0 3px;  
+}
+.distance-menu-warpper .distance-menu-element:nth-last-child(1) {
+  border-radius: 0 3px 3px 0;
+}
+
+.distance-menu-warpper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.distance-menu-bar {
+  height: 80%;
+
+  width: 1.5px;
+  background-color: #427bff;
 }

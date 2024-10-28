@@ -1,31 +1,32 @@
 "use client"
 import {React, useState} from 'react'
-import MapDropdownElement from './MapDropdownElement'
+
+import {useSelector} from 'react-redux'
 
 import MapSidebarElement from './MapSidebarElement';
 
-function MapSideBar() {
+function MapSideBar(props) {
 
   const [dropdown, setDropdown] = useState(false)
-
   const [sideBar, setSideBar] = useState(true);
-
-  return (
-    <div className={sideBar ? 'map-sideBar-container extended' : "map-sideBar-container"}>
+  const isDistanceMode = useSelector(state => state.mapModal.value)
 
 
-      {/* this is the Menu closing-opening button */}
-      <div className={sideBar ? "menu-wrapper menu-wraper-extend" : "menu-wrapper"} onClick={()=>{setSideBar(!sideBar)}}>
-        <div className="material-icons" id="menu">menu</div>
+  return (  
+
+    <>
+
+
+      <div className={sideBar ? 'map-sideBar-container extended' : "map-sideBar-container"}>
+        <div className={sideBar ? "menu-wrapper menu-wraper-extend" : "menu-wrapper"} onClick={()=>{setSideBar(!sideBar)}}>
+          <div className="material-icons" id="menu">menu</div>
+        </div>
+          <MapSidebarElement title={"Running Crew"} text={['Join Crew', "Create Crew"]}></MapSidebarElement>
+
+          <MapSidebarElement isDistanceMode={props.isDistanceMode} title={"Running Route"} text={['Run Route', 'Create Route']}></MapSidebarElement>
+          {/* {isDistanceMode ? <DistanceMenu></DistanceMenu> : null}  */}
       </div>
-
-
-        {/* these are the Sidebar's main components - the Running Crew and the Running Routes */}
-        <MapSidebarElement title={"Running Crew"} text={['Join Crew', "Create Crew"]}></MapSidebarElement>
-        <MapSidebarElement title={"Running Route"} text={['Run Route', 'Create Route']}></MapSidebarElement>
-        
-
-    </div>
+    </>
   )
 }
 

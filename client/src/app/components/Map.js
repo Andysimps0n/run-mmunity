@@ -7,6 +7,7 @@ import Header from './Header';
 import MapSideBar from './MapSideBar';
 import MapModal from './MapModal';
 import Cancle from './Cancle';
+import DistanceMenu from './DistanceMenu';
 
 import { distanceMode } from '../mapDistance';
 import distanceWrapper from '../hooks/mapDistance/distanceWrapper';
@@ -17,6 +18,15 @@ const Map = () => {
   const mapModal = useSelector(state => state.mapModal.value)
   const isDistanceMode = useSelector(state => state.isDistanceMode.value)
   const [map, setMap] = useState(null)
+
+  const mapObject = {
+    drawingFlag : false,
+    moveLine : {},
+    clickLine : null,
+    distanceOverlay : null,
+    dots : {},
+    map : map
+  }
 
   useEffect(() => {
     if (window.kakao && window.kakao.maps) {
@@ -29,7 +39,7 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    {isDistanceMode ? distanceWrapper(map, mapContainer) : null}
+    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject) : null}
     console.log(isDistanceMode)
 
   }, [isDistanceMode])
@@ -43,10 +53,9 @@ const Map = () => {
 
 
           <Header isOnMap={true}></Header>
-          <MapSideBar ></MapSideBar>
-          {}
+          <MapSideBar isDistanceMode={isDistanceMode}></MapSideBar>
 
-          <div ref={mapContainer} style={{ width: '100%', height: '100%' }}></div>
+          <div ref={mapContainer} style={{ width: '100%', height: '92vh' }}></div>
           {mapModal ? <MapModal></MapModal> : null}
 
 

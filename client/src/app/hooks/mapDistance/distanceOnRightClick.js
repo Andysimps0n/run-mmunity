@@ -1,6 +1,6 @@
 
 //  Quit Drawing when right clicked
-export default function distanceOnRightLick(mouseEvent, mapObject) {
+export default function distanceOnRightLick( mapObject) {
  
 
   function getTimeHTML(distance) {

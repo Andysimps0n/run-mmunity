@@ -1,6 +1,6 @@
 "use client"
-import { useSelector, useDispatch } from 'react-redux'
-import { turnOn, turnOff, turnDistanceOn } from '../store'
+import { useDispatch } from 'react-redux'
+import { turnOff, turnDistanceOn } from '../store'
 import {React, useState} from 'react'
 
 function MapModal() {
