@@ -23,7 +23,7 @@ const Map = () => {
   const mapObject = {
     drawingFlag : false,
     moveLine : {},
-    clickLine : null,
+    clickLine : {},
     distanceOverlay : null,
     dots : {},
     map : map
@@ -40,8 +40,10 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject, dispatch) : null}
-    console.log(isDistanceMode)
+    console.log('isDistanceMode : ' + isDistanceMode)
+    console.log(mapObject)
+    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject, dispatch, isDistanceMode) : null}
+    console.log(mapObject)
 
   }, [isDistanceMode])
   
@@ -54,7 +56,7 @@ const Map = () => {
 
 
           <Header isOnMap={true}></Header>
-          <MapSideBar isDistanceMode={isDistanceMode}></MapSideBar>
+          <MapSideBar mapObject={mapObject} isDistanceMode={isDistanceMode}></MapSideBar>
 
           <div ref={mapContainer} style={{ width: '100%', height: '92vh' }}></div>
           {mapModal ? <MapModal></MapModal> : null}

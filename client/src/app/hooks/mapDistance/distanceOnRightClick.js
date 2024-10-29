@@ -39,6 +39,7 @@ export default function distanceOnRightLick( mapObject) {
           
     mapObject.moveLine.setMap(null);
     mapObject.moveLine = null;  
+    mapObject.drawingFlag = false;  
     
     var path = mapObject.clickLine.getPath();
 
@@ -63,7 +64,7 @@ export default function distanceOnRightLick( mapObject) {
 
     }
     
-    mapObject.drawingFlag = false;  
-  }}
+  }
+}
 
   

@@ -23,7 +23,7 @@ function MapSideBar(props) {
         </div>
           <MapSidebarElement title={"Running Crew"} text={['Join Crew', "Create Crew"]}></MapSidebarElement>
 
-          <MapSidebarElement isDistanceMode={props.isDistanceMode} title={"Running Route"} text={['Run Route', 'Create Route']}></MapSidebarElement>
+          <MapSidebarElement mapObject={props.mapObject} isDistanceMode={props.isDistanceMode} title={"Running Route"} text={['Run Route', 'Create Route']}></MapSidebarElement>
           {/* {isDistanceMode ? <DistanceMenu></DistanceMenu> : null}  */}
       </div>
     </>

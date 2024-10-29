@@ -28,7 +28,7 @@ function MapSidebarElement(props) {
             {dropdown ? <MapDropdownElement isTurnedOn={true} text={props.text[1]} onClick={()=>{}}></MapDropdownElement> : null }
             
             
-            {props.isDistanceMode ? <DistanceMenu></DistanceMenu> : null }
+            {props.isDistanceMode ? <DistanceMenu mapObject={props.mapObject}></DistanceMenu> : null }
             
 
         </div>

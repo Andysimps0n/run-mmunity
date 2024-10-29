@@ -1,8 +1,17 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import InitDistance from '../hooks/mapDistance/InitDistance';
+import { useDispatch } from 'react-redux';
+import { turnDistanceOff } from '../store';
 
-function DistanceMenu() {
+function DistanceMenu(props) {
 
+  const dispatch = useDispatch()
+  
+
+  const onCancle = (mapObject)=>{
+    InitDistance(mapObject)
+    dispatch(turnDistanceOff())
+  }
 
   return (
     <div className='distance-menu-container'>
@@ -10,7 +19,9 @@ function DistanceMenu() {
 
         <div className="distance-menu-element" onClick={()=>{}}>Save</div>
         <div className="distance-menu-bar"></div>
-        <div className="distance-menu-element">Cancel</div>
+        <div className="distance-menu-element" onClick={()=>{
+          onCancle(props.mapObject)
+          }}>Cancel</div>
 
 
       </div>

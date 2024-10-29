@@ -1,4 +1,4 @@
-export default function distanceOnCLick(mouseEvent, mapObject, functions) {
+export default function distanceOnCLick(mouseEvent, mapObject) {
   const clickPosition = mouseEvent.latLng;
   
   if (!mapObject.drawingFlag) {
@@ -76,6 +76,30 @@ export default function distanceOnCLick(mouseEvent, mapObject, functions) {
     mapObject.dots = [];
   }
 
+
+  function displayCircleDot(position, distance) {
+
+    var circleOverlay = new kakao.maps.CustomOverlay({
+        content: '<span class="dot"></span>',
+        position: position,
+        zIndex: 1
+    });
+    circleOverlay.setMap(mapObject.map);
+    if (distance > 0) {
+        // 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
+        var distanceOverlay = new kakao.maps.CustomOverlay({
+            content: '<div class="dotOverlay hover-distance-container"> <span class="number">' + distance + '</span>m</div>',
+            position: position,
+            yAnchor: 1,
+            zIndex: 2
+        });
+        // 지도에 표시합니다
+        distanceOverlay.setMap(mapObject.map);
+    }
+    // 배열에 추가합니다
+    mapObject.dots.push({circle:circleOverlay, distance: distanceOverlay});
+  }
+  
 
 }
 
