@@ -18,6 +18,7 @@ const Map = () => {
   const mapModal = useSelector(state => state.mapModal.value)
   const isDistanceMode = useSelector(state => state.isDistanceMode.value)
   const [map, setMap] = useState(null)
+  const dispatch = useDispatch()
 
   const mapObject = {
     drawingFlag : false,
@@ -39,7 +40,7 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject) : null}
+    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject, dispatch) : null}
     console.log(isDistanceMode)
 
   }, [isDistanceMode])

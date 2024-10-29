@@ -12,10 +12,9 @@ import distanceOnRightLick from "./distanceOnRightClick";
 
 
 
-export default function disatnceWrapper(map, mapContainer, mapObject) {
+export default function disatnceWrapper(map, mapContainer, mapObject, dispatch) {
 
 
-  const dispatch = useDispatch()
 
   let drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
   let moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
