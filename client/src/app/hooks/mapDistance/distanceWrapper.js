@@ -1,4 +1,7 @@
 import { setIsDrawing } from "@/app/store";
+import { useDispatch } from "react-redux";
+
+import InitDistance from "./InitDistance";
 
 import distanceOnClick from "./distanceOnClick"
 import distanceOnMousemove from "./distanceOnMousemove";
@@ -11,22 +14,22 @@ import distanceOnRightLick from "./distanceOnRightClick";
 
 
 
-export default function disatnceWrapper(map, dispatch, isDistanceMode) {
+export default function disatnceWrapper(map, isInit) {
 
   const mapObject = {
-        drawingFlag : false,
-        moveLine : {},
-        clickLine : {},
-        distanceOverlay : null,
-        dots : {},
-        map : map
+    drawingFlag : false,
+    moveLine : {},
+    clickLine : {},
+    distanceOverlay : null,
+    dots : {},
+    map : map
   }
 
-  mapObject.drawingFlag = true
+  {isInit ?  InitDistance(mapObject) : null }
+
   
   window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
     distanceOnClick(mouseEvent, mapObject)
-    dispatch(setIsDrawing(true))
     
   })
   
@@ -43,6 +46,6 @@ export default function disatnceWrapper(map, dispatch, isDistanceMode) {
   
   console.log('distance wrapper is running')
   console.log('mapObject.drawingFlag = ' + mapObject.drawingFlag)
-    
+  
   }  
 

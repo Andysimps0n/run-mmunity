@@ -38,7 +38,7 @@ const Map = () => {
 
   }, [isDistanceMode])
   
-
+  debugger
 
   return (
     <div >
@@ -47,7 +47,7 @@ const Map = () => {
 
 
           <Header isOnMap={true}></Header>
-          <MapSideBar isDistanceMode={isDistanceMode}></MapSideBar>
+          <MapSideBar map={map ? map : null} isDistanceMode={isDistanceMode}></MapSideBar>
 
           <div ref={mapContainer} style={{ width: '100%', height: '92vh' }}></div>
           {mapModal ? <MapModal></MapModal> : null}

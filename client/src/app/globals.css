@@ -5,7 +5,7 @@ body {
   color: white;
   background-size: cover; /* Or "contain" if you want the whole image to fit */
   margin: 0;
-  user-select: none;
+  /* user-select: none; */
 
 }
 
