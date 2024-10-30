@@ -20,14 +20,7 @@ const Map = () => {
   const [map, setMap] = useState(null)
   const dispatch = useDispatch()
 
-  const mapObject = {
-    drawingFlag : false,
-    moveLine : {},
-    clickLine : {},
-    distanceOverlay : null,
-    dots : {},
-    map : map
-  }
+
 
   useEffect(() => {
     if (window.kakao && window.kakao.maps) {
@@ -41,9 +34,7 @@ const Map = () => {
 
   useEffect(()=>{
     console.log('isDistanceMode : ' + isDistanceMode)
-    console.log(mapObject)
-    {isDistanceMode ? distanceWrapper(map, mapContainer,mapObject, dispatch, isDistanceMode) : null}
-    console.log(mapObject)
+    {isDistanceMode ? distanceWrapper(map, mapContainer, dispatch, isDistanceMode) : null}
 
   }, [isDistanceMode])
   
@@ -56,7 +47,7 @@ const Map = () => {
 
 
           <Header isOnMap={true}></Header>
-          <MapSideBar mapObject={mapObject} isDistanceMode={isDistanceMode}></MapSideBar>
+          <MapSideBar isDistanceMode={isDistanceMode}></MapSideBar>
 
           <div ref={mapContainer} style={{ width: '100%', height: '92vh' }}></div>
           {mapModal ? <MapModal></MapModal> : null}
