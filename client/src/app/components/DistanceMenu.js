@@ -10,7 +10,6 @@ function DistanceMenu(props) {
   
 
   const onCancle = ()=>{
-    console.log('on cancle');
     
     dispatch(turnDistanceOff())
     disatnceWrapper(undefined, true)

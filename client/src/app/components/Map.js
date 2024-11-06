@@ -33,12 +33,10 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    console.log('isDistanceMode : ' + isDistanceMode)
     {isDistanceMode ? distanceWrapper(map, mapContainer, dispatch, isDistanceMode) : null}
 
   }, [isDistanceMode])
   
-  debugger
 
   return (
     <div >

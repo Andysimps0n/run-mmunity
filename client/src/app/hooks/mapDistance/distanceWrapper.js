@@ -25,27 +25,25 @@ export default function disatnceWrapper(map, isInit) {
     map : map
   }
 
+  console.log(mapObject);
   {isInit ?  InitDistance(mapObject) : null }
 
-  
-  window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
-    distanceOnClick(mouseEvent, mapObject)
+  if (map) {
+
+    window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
+      distanceOnClick(mouseEvent, mapObject)
+      
+    })
     
-  })
-  
-  
-  window.kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent){
-    distanceOnMousemove(mouseEvent, mapObject)
-  })
-  
-  
-  window.kakao.maps.event.addListener(map, 'rightclick', function (){
-    distanceOnRightLick( mapObject)
-  })
-  
-  
-  console.log('distance wrapper is running')
-  console.log('mapObject.drawingFlag = ' + mapObject.drawingFlag)
-  
+    
+    window.kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent){
+      distanceOnMousemove(mouseEvent, mapObject)
+    })
+    
+    
+    window.kakao.maps.event.addListener(map, 'rightclick', function (){
+      distanceOnRightLick( mapObject)
+    })
+  }
   }  
 

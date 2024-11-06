@@ -6,9 +6,5 @@ export default (mapObject) => {
     deleteDistance(mapObject);
     deleteCircleDot(mapObject);
 
-    mapObject.drawingFlag = false;
-
-    // {mapObject.moveLine ? mapObject.moveLine.setMap(null) : null}
-    // mapObject.moveLine = null;
 
 }

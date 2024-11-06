@@ -1,3 +1,4 @@
+import { Dela_Gothic_One } from "next/font/google";
 import { deleteDistance, deleteCircleDot,displayCircleDot, deleteClickLine } from "./distanceFunctions";
 
 
@@ -6,11 +7,13 @@ export default function distanceOnCLick(mouseEvent, mapObject) {
   
   if (!mapObject.drawingFlag) {
     
+
+    console.log('map clean')
     //  Drawing Line : Init
-    
     deleteClickLine(mapObject)
     deleteDistance(mapObject);
     deleteCircleDot(mapObject);
+
     
     mapObject.drawingFlag = true;
 
@@ -23,7 +26,6 @@ export default function distanceOnCLick(mouseEvent, mapObject) {
       strokeOpacity : 1,
       strokeStyle : 'solid'
     })
-    console.log('123123');
     
 
 
