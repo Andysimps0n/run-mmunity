@@ -1,22 +1,16 @@
 import { setIsDrawing } from "@/app/store";
 import { useDispatch } from "react-redux";
 
-import InitDistance from "./InitDistance";
-
+import { deleteLines } from "./InitDistance";
 import distanceOnClick from "./distanceOnClick"
 import distanceOnMousemove from "./distanceOnMousemove";
 import distanceOnRightLick from "./distanceOnRightClick";
 
-// export function cleanMap(map){
-//   distanceOnRightLick( mapObject)
 
-// }
-
-
-
+// functions return mapObject for updates
 export default function disatnceWrapper(map, isInit) {
 
-  const mapObject = {
+  let mapObject = {
     drawingFlag : false,
     moveLine : {},
     clickLine : {},
@@ -25,10 +19,13 @@ export default function disatnceWrapper(map, isInit) {
     map : map
   }
 
-  console.log(mapObject);
-  {isInit ?  InitDistance(mapObject) : null }
-
+  
+  
   if (map) {
+    
+    if (isInit == true){
+      deleteLines(mapObject)
+    }
 
     window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
       distanceOnClick(mouseEvent, mapObject)

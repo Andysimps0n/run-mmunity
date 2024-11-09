@@ -8,6 +8,8 @@ export function deleteClickLine(mapObject) {
 
       mapObject.clickLine = null;        
   }
+
+  return mapObject
 }
 
 export function deleteDistance(mapObject) {
@@ -15,6 +17,7 @@ export function deleteDistance(mapObject) {
       mapObject.distanceOverlay.setMap(null);
       mapObject.distanceOverlay = null;
   }
+  return mapObject
 }
 
 export function displayCircleDot(position, distance, mapObject) {
@@ -51,6 +54,8 @@ export function deleteCircleDot(mapObject) {
   }
 
   mapObject.dots = [];
+
+  return mapObject
 }
 
 export function getTimeHTML(distance) {

@@ -20,4 +20,5 @@ export default function distanceOnMousemove(mouseEvent, mapObject) {
 
     showDistance(content, mousePosition, mapObject)
   }
+
 }

@@ -9,7 +9,6 @@ import MapDropdownElement from './MapDropdownElement'
 import DistanceMenu from './DistanceMenu'
 
 function MapSidebarElement(props) {
-
   const [dropdown, setDropdown] = useState(true)
 
   

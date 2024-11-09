@@ -1,10 +1,11 @@
 import { deleteClickLine, deleteDistance, deleteCircleDot } from "./distanceFunctions";
 
-export default (mapObject) => {
+export function deleteLines(mapObject) {
     
     deleteClickLine(mapObject);
     deleteDistance(mapObject);
-    deleteCircleDot(mapObject);
-
+    deleteCircleDot(mapObject);   
+    
+    console.log('deleteLines runned');
 
 }

@@ -33,6 +33,7 @@ export default function distanceOnRightLick( mapObject) {
     }
     
   }
+
 }
 
   

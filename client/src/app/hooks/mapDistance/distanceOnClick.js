@@ -8,7 +8,6 @@ export default function distanceOnCLick(mouseEvent, mapObject) {
   if (!mapObject.drawingFlag) {
     
 
-    console.log('map clean')
     //  Drawing Line : Init
     deleteClickLine(mapObject)
     deleteDistance(mapObject);
@@ -38,7 +37,7 @@ export default function distanceOnCLick(mouseEvent, mapObject) {
     })
     displayCircleDot(clickPosition, 0, mapObject);
 
-
+      
     // Drawing line : drawing
   } else {
 
@@ -49,7 +48,10 @@ export default function distanceOnCLick(mouseEvent, mapObject) {
 
     let distance = Math.round(mapObject.clickLine.getLength());
     displayCircleDot(clickPosition, distance, mapObject);
+
+
   }
+
 }
 
 

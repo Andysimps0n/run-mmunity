@@ -1,18 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { turnDistanceOff } from '../store';
-
 import disatnceWrapper from '../hooks/mapDistance/distanceWrapper';
 
 function DistanceMenu(props) {
 
-  const dispatch = useDispatch()
-  
-
+  const map = useSelector(state=>state.map.value)
   const onCancle = ()=>{
     
     dispatch(turnDistanceOff())
-    disatnceWrapper(undefined, true)
+    console.log('on cancle');
   }
 
   return (

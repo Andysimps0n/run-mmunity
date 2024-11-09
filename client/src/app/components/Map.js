@@ -6,18 +6,16 @@ import Script from 'next/script';
 import Header from './Header';
 import MapSideBar from './MapSideBar';
 import MapModal from './MapModal';
-import Cancle from './Cancle';
-import DistanceMenu from './DistanceMenu';
-
-import { distanceMode } from '../mapDistance';
 import distanceWrapper from '../hooks/mapDistance/distanceWrapper';
+import { setMapRedux } from '../store';
 
 const Map = () => {
 
   const mapContainer = useRef(null);
   const mapModal = useSelector(state => state.mapModal.value)
   const isDistanceMode = useSelector(state => state.isDistanceMode.value)
-  const [map, setMap] = useState(null)
+  const map = useSelector(state=>state.map.value)
+
   const dispatch = useDispatch()
 
 
@@ -28,15 +26,14 @@ const Map = () => {
         center: new window.kakao.maps.LatLng(37.27415136786895, 127.0565980191825), // Center coordinates
         level: 4, 
       }; 
-      setMap(new window.kakao.maps.Map(mapContainer.current, mapOption))
+      dispatch(setMapRedux(new window.kakao.maps.Map(mapContainer.current, mapOption)))
     }
   }, []); 
 
   useEffect(()=>{
-    {isDistanceMode ? distanceWrapper(map, mapContainer, dispatch, isDistanceMode) : null}
+    {isDistanceMode ? distanceWrapper(map, false) : null}
 
   }, [isDistanceMode])
-  
 
   return (
     <div >
@@ -45,7 +42,7 @@ const Map = () => {
 
 
           <Header isOnMap={true}></Header>
-          <MapSideBar map={map ? map : null} isDistanceMode={isDistanceMode}></MapSideBar>
+          <MapSideBar isDistanceMode={isDistanceMode}></MapSideBar>
 
           <div ref={mapContainer} style={{ width: '100%', height: '92vh' }}></div>
           {mapModal ? <MapModal></MapModal> : null}
