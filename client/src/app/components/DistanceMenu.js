@@ -9,11 +9,13 @@ function DistanceMenu(props) {
   const onCancle = ()=>{
     
     dispatch(turnDistanceOff())
-    console.log('on cancle');
+    
   }
 
-  const onSave = ()=>{
-  }
+  const mapLatLng = useSelector(state=>state.mapLatLng.value);
+  const dispatch = useDispatch();
+
+
 
   return (
     <div className='distance-menu-container'>

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
+import distanceOnClick from '../hooks/mapDistance/distanceOnClick';
+import distanceOnMousemove from '../hooks/mapDistance/distanceOnMousemove';
+import distanceOnRightLick from '../hooks/mapDistance/distanceOnRightClick';
 
 import Script from 'next/script'; 
 import Header from './Header';
@@ -10,7 +13,7 @@ import distanceWrapper from '../hooks/mapDistance/distanceWrapper';
 import { setMapRedux } from '../store';
 
 const Map = () => {
-
+  const mapObject = useSelector(state => state.mapObject.value)
   const mapContainer = useRef(null);
   const mapModal = useSelector(state => state.mapModal.value)
   const isDistanceMode = useSelector(state => state.isDistanceMode.value)
@@ -31,10 +34,32 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    {isDistanceMode ? distanceWrapper(map, false) : null}
+    if (isDistanceMode && map) {
+        
+
+        window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
+          distanceOnClick(mouseEvent, mapObject, dispatch)
+          
+        })
+        
+        
+        window.kakao.maps.event.addListener(map, 'mousemove', function(mouseEvent){
+          distanceOnMousemove(mouseEvent, mapObject, dispatch)
+        })
+        
+        
+        window.kakao.maps.event.addListener(map, 'rightclick', function (){
+          distanceOnRightLick( mapObject, dispatch)
+        })
+
+    }
+    {isDistanceMode ? distanceWrapper(mapObject,map, false) : null}
 
   }, [isDistanceMode])
 
+
+
+  
   return (
     <div >
       <Script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ca0517e212eef9e2b05b7cb7b27e8bb4" strategy="beforeInteractive" />

@@ -1,20 +1,20 @@
 import { Dela_Gothic_One } from "next/font/google";
 import { deleteDistance, deleteCircleDot,displayCircleDot, deleteClickLine } from "./distanceFunctions";
+import { updateMap } from "@/app/store";
 
 
-export default function distanceOnCLick(mouseEvent, mapObject) {
+export default function distanceOnCLick(mouseEvent, mapObject, dispatch) {
   const clickPosition = mouseEvent.latLng;
   
   if (!mapObject.drawingFlag) {
     
 
     //  Drawing Line : Init
-    deleteClickLine(mapObject)
+    deleteClickLine(mapObject, dispatch)
     deleteDistance(mapObject);
     deleteCircleDot(mapObject);
 
-    
-    mapObject.drawingFlag = true;
+    dispatch(updateMap({field : 'drawingFlag', value : true}))
 
     // Draw line (clicked)
     mapObject.clickLine = new kakao.maps.Polyline({

@@ -1,7 +1,7 @@
 
 
 
-export function deleteClickLine(mapObject) {
+export function deleteClickLine(mapObject, dispatch) {
   if (mapObject.clickLine) {
       try {mapObject.clickLine.setMap(null)}
       catch{};
