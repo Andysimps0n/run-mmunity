@@ -34,12 +34,12 @@ const Map = () => {
   }, []); 
 
   useEffect(()=>{
-    if (isDistanceMode && map) {
+    if (isDistanceMode) {
         
+      debugger
 
         window.kakao.maps.event.addListener(map, 'click', function(mouseEvent){
           distanceOnClick(mouseEvent, mapObject, dispatch)
-          
         })
         
         

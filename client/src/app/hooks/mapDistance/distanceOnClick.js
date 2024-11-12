@@ -7,17 +7,16 @@ export default function distanceOnCLick(mouseEvent, mapObject, dispatch) {
   const clickPosition = mouseEvent.latLng;
   
   if (!mapObject.drawingFlag) {
-    
 
     //  Drawing Line : Init
     deleteClickLine(mapObject, dispatch)
     deleteDistance(mapObject);
-    deleteCircleDot(mapObject);
+    deleteCircleDot(mapObject, dispatch);
 
     dispatch(updateMap({field : 'drawingFlag', value : true}))
 
     // Draw line (clicked)
-    mapObject.clickLine = new kakao.maps.Polyline({
+    let hoverLine = new kakao.maps.Polyline({
       map: mapObject.map,
       path : [clickPosition],
       strokeWeight : 5,
@@ -25,16 +24,20 @@ export default function distanceOnCLick(mouseEvent, mapObject, dispatch) {
       strokeOpacity : 1,
       strokeStyle : 'solid'
     })
+    dispatch(updateMap({filed : "clickLine", value : hoverLine}))
     
 
 
     // Draw line (on hover)
-    mapObject.moveLine = new kakao.maps.Polyline({
+    let moveLine  = new kakao.maps.Polyline({
       strokeWeight: 5,  
       strokeColor: '#1670f7', 
       strokeOpacity: 0.2, 
       strokeStyle: 'solid'    
     })
+    dispatch(updateMap({field : 'moveLine', value : moveLine}))
+
+
     displayCircleDot(clickPosition, 0, mapObject);
 
       

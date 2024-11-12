@@ -1,4 +1,4 @@
-
+import { updateMap } from "@/app/store";
 
 
 export function deleteClickLine(mapObject, dispatch) {
@@ -6,18 +6,15 @@ export function deleteClickLine(mapObject, dispatch) {
       try {mapObject.clickLine.setMap(null)}
       catch{};
 
-      mapObject.clickLine = null;        
+      dispatch(updateMap({field : "clickLine", value : null}))        
   }
-
-  return mapObject
 }
 
 export function deleteDistance(mapObject) {
   if (mapObject.distanceOverlay) {
       mapObject.distanceOverlay.setMap(null);
-      mapObject.distanceOverlay = null;
+      dispatch(updateMap({field : "distanceOverlay", value : null}))
   }
-  return mapObject
 }
 
 export function displayCircleDot(position, distance, mapObject) {
@@ -38,11 +35,10 @@ export function displayCircleDot(position, distance, mapObject) {
       });
       distanceOverlay.setMap(mapObject.map);
   }
-
   mapObject.dots.push({circle: circleOverlay, distance: distanceOverlay});
 }
 
-export function deleteCircleDot(mapObject) {
+export function deleteCircleDot(mapObject, dispatch) {
   for (let i = 0; i < mapObject.dots.length; i++) {
       if (mapObject.dots[i].circle) { 
           mapObject.dots[i].circle.setMap(null);
@@ -53,9 +49,7 @@ export function deleteCircleDot(mapObject) {
       }
   }
 
-  mapObject.dots = [];
-
-  return mapObject
+  dispatch(updateMap({field : 'dots', value : []}))
 }
 
 export function getTimeHTML(distance) {
@@ -71,13 +65,14 @@ export function showDistance(content, position, mapObject) {
       mapObject.distanceOverlay.setPosition(position);
       mapObject.distanceOverlay.setContent(content);
   } else {
-      mapObject.distanceOverlay = new kakao.maps.CustomOverlay({
-          map: mapObject.map,
-          content: content,
-          position: position,
-          xAnchor: 0,
-          yAnchor: 0,
-          zIndex: 3  
-      });      
+    const newOverlay = new kakao.maps.CustomOverlay({
+      map: mapObject.map,
+      content: content,
+      position: position,
+      xAnchor: 0,
+      yAnchor: 0,
+      zIndex: 3  
+    });      
+    dispatch(updateMap({field : "distanceOverlay", value : newOverlay}))
   }
 }

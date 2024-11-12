@@ -76,8 +76,11 @@ const mapObject = createSlice({
   },
   reducers : {
     updateMap : (state, action) => {
+
+      // 바꿔야 하는 key의 이름과 값을 받음
       const {field, value} = action.payload;
 
+      // 바꿔야 하는 값이 객체라면 
       if (field.includes('.')) {
         const [parent, child] = field.split('.')
         state.value = {
@@ -86,15 +89,16 @@ const mapObject = createSlice({
             [child] : value
           }
         }
+
+
+      // 바꿔야 하는 값이 객체가 아니라면
       } else {
         state.value =  {
           ...state.value,
           [field] : value
         }
-      }
-    }
-  }
-})
+      }}
+  }})
 
 
 
@@ -103,7 +107,7 @@ export const {turnDistanceOn, turnDistanceOff} = isDistanceModeSlice.actions;
 export const {setIsDrawing} = isDrawing.actions;
 export const {setMapRedux} = map.actions
 export const {AddMapLatLng} = mapLatLng.actions;
-export const {updateMap} = mapLatLng.actions;
+export const {updateMap} = mapObject.actions;
 
 const store = configureStore({
   reducer : {
