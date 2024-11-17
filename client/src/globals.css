@@ -331,7 +331,7 @@ a {
 }
 
 .post {
-  height: 170px;
+  height: 100%;
   margin: 0 auto;
   width: 282px;
   border-radius: 5px;
@@ -609,7 +609,22 @@ input, textarea {
   color: #EE4266;
 }
 
-.join-outer-most-contianer {
+.join-outer-most-container {
   width: 40vw;
-  height: 20vh
+  height: 100vh;
+  box-sizing: border-box;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+.map-container  {
+  width: 100%;
+  height: 50%;
+
+  background-color: #000000;
 }

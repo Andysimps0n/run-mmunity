@@ -18,15 +18,15 @@ function page() {
 
 
   useEffect(()=>{
-    fetchIntoState()
+    updatePostList()
   },[page])
   
 
-  const fetchIntoState = async()=>{
+  const updatePostList = async()=>{
     const response = await requestPosts(page)
+    console.log(response.data.data)
     setPostData(response.data.data)
   }
-
 
 
   return (
@@ -36,11 +36,10 @@ function page() {
       <div className="posts-outer-most-container">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet"></link>
         <PostHeader></PostHeader>
-
         <div className="posts-container ">
           {postData.map((element,i)=>{
             return(
-            <PostElement id={element.id} text={element.text} like={element.like} fetchIntoState={fetchIntoState}></PostElement>
+              <PostElement key={i} id={element.id} text={element.text} like={element.like} fetchIntoState={updatePostList}></PostElement>
             )})}
 
 
@@ -52,7 +51,7 @@ function page() {
 
         {writingPostModalBool? <WritePost
            setWritingPostModalBool={setWritingPostModalBool}
-           fetchIntoState={fetchIntoState}
+           fetchIntoState={updatePostList}
            
            ></WritePost> : null}
         

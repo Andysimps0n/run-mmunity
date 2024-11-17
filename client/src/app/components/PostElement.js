@@ -20,7 +20,6 @@ function PostElement(props) {
 
 
 
-
   return (
     <div key={props.id} id={`post${props.id}`} className="post"> 
     <div className="post-wrapper ">
@@ -29,11 +28,11 @@ function PostElement(props) {
       </div>
 
       <div className="post-reactions">
-        <div className="post-reaction-wrapper border" onClick={()=>(handleLikeClick())}>
+        <div className="post-reaction-wrapper " onClick={()=>(handleLikeClick())}>
           <div className={`material-icons ${likeClass ? "red-like" : null}`} id="favorite">favorite</div>
-          <div>{props.like ? props.like : 'x'}</div>
+          <div>{props.like}</div>
         </div>
-        <div className="post-reaction-wrapper border">
+        <div className="post-reaction-wrapper ">
           <div className="material-icons" id="chat_bubble">chat_bubble</div>
           <div> 0</div>
 

@@ -4,7 +4,6 @@ function Pagination(props) {
 
   const paginationArray = Array.from({length : 5}, (_, i) => i + 1)
 
-
   return (
     <div className="post-pagination-container">
         <div className="post-pagination">
