@@ -188,7 +188,7 @@ a {
   margin: 0 auto 15vh auto;
   width: 90vw;
   height: 8vh;
-
+  z-index: 999;
   display: flex;
   justify-content: center;
   backdrop-filter:  blur(15px);
@@ -609,7 +609,17 @@ input, textarea {
   color: #EE4266;
 }
 
-.join-outer-most-contianer {
-  width: 40vw;
-  height: 20vh
+.kakaoMap {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 999;
+}
+
+.map-outermost-container {
+  width: 100vw;
+  height: 100vh;
 }
