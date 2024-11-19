@@ -11,11 +11,14 @@ function page() {
 
   const kakaoMap = useRef(null);
   const onScriptLoad = ()=>{
-    // mapOption = { 
-    //   center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    //   level: 3 // 지도의 확대 레벨
-    // };
-    // map = new kakao.maps.Map(kakaoMap, mapOption)
+    if (kakao.maps) {
+      mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };
+      map = new kakao.maps.Map(kakaoMap, mapOption)
+
+    }
     console.log('this is onScriptLoad ')
     // console.log(`map : ${map}`)
   }
