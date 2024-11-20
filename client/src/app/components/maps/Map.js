@@ -1,7 +1,7 @@
 "use client"
 
 import {React, useEffect, useState} from 'react'
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, CalculatePolylineDistanceStyle, Polyline, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import Script from 'next/script';
 
 function MapComponent() {
@@ -56,7 +56,39 @@ function MapComponent() {
       <Map 
         center={{lat : 37.274221, lng : 127.056583}}
         className='kakaoMap'
-        ></Map>
+        onClick={handleClick}
+        onMouseMove={handleMouseMove}
+      ></Map>
+
+
+      <Polyline
+        path={paths}
+        strokeWeight={3}
+        strokeColor={"#db4040"}
+        strokeOpacity={1}
+        strokeStyle={'solid'}
+        onCreate={setClickLine}
+      ></Polyline>
+
+
+      {paths.map((path)=> {
+        <CustomOverlayMap
+          key={`dot-${path.lat}, ${path.lng}`}
+          position={push}
+          zIndex={1}
+        >
+          <span className="dot"></span>
+        </CustomOverlayMap>
+      })}
+
+
+      {paths.lengtsh > 1 && distances.slice(1, distances.length).map((distance,index)=>(
+        <CustomOverlayMap
+          key={`distance-${}`}
+
+        ></CustomOverlayMap>
+      ))}
+      
     </>
   )
 }
