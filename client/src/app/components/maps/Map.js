@@ -4,34 +4,39 @@ import {React, useEffect, useRef} from 'react'
 
 function Map() {
 
-    const onScriptLoad = ()=>{
-        if (kakao.maps) {
-          mapOption = { 
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-          };
-    
-        }
-        console.log('this is onScriptLoad ')
-        // console.log(`map : ${map}`)
-      }
+  useEffect(() => {
+    if (window.kakao && window.kakao.maps) {
+      initMapVariables()
+      console.log('window and kakao is true')
+    } else {
+      console.log('window and kakao is false')  
+    }
 
+    console.log('Map.js is rendered')
+  }, []);
 
-    let mapOption;
-    let map;
-  
+  const initMapVariables = () => {
+    let call1 = kakao
+    mapOption = {
+      center: new kakao.maps.LatLng(37.27415136786895, 127.0565980191825), // Center coordinates
+      level: 3, 
+    }; 
+    map = new kakao.maps.Map(kakaoMap, mapOption)
     const kakaoMap = useRef(null);
+  }
   
-    useEffect(() => {
-        mapOption = {
-          center: new window.kakao.maps.LatLng(37.27415136786895, 127.0565980191825), // Center coordinates
-          level: 3, 
-        }; 
-        map = new kakao.maps.Map(kakaoMap, mapOption)
-    }, []); 
+  let mapOption;
+  let map;
+  
+
+  const kakaoMap = useRef(null);
+  
 
   return (
-    <div ref={kakaoMap} className='kakaoMap'></div>
+    <>
+      <div ref={kakaoMap} className='kakaoMap'></div>
+      <div className="box1"></div>
+    </>
   )
 }
 

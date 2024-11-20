@@ -615,7 +615,6 @@ input, textarea {
   position: absolute;
   top: 0;
   left: 0;
-
   z-index: 999;
 }
 
@@ -624,4 +623,11 @@ input, textarea {
   height: 100vh;
 
   box-sizing: border-box;
+}
+
+.box1 {
+  width: 200px;
+  height: 200px;
+  background-color: #71002B;
+  z-index: 8976;
 }
