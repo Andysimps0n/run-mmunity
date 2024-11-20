@@ -18,16 +18,11 @@ function page() {
   return (
     <div className="map-outermost-container">
       <Head>
-        <Script
-          onLoad={()=>{console.log('Loading sdk succeed')}}
-          onError={()=>{console.log('Loading sdk failed')}}
-          src="dapi.kakao.com/v2/maps/sdk.js?appkey=ca0517e212eef9e2b05b7cb7b27e8bb4"
-        ></Script>
       </Head>
 
       <Header></Header>
-
-
+      <Map></Map>
+      {console.log('canLoadMap is ' + canLoadMap)}
       {canLoadMap ? console.log('rendering Map') : console.log('not renderting Map')}
     </div>
     

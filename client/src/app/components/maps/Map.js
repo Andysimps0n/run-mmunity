@@ -16,13 +16,11 @@ function Map() {
   }, []);
 
   const initMapVariables = () => {
-    let call1 = kakao
     mapOption = {
       center: new kakao.maps.LatLng(37.27415136786895, 127.0565980191825), // Center coordinates
       level: 3, 
     }; 
-    map = new kakao.maps.Map(kakaoMap, mapOption)
-    const kakaoMap = useRef(null);
+    map = new kakao.maps.Map(kakaoMap.current, mapOption)
   }
   
   let mapOption;
