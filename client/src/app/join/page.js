@@ -3,9 +3,10 @@
 import Script from 'next/script';
 import Head from 'next/head'
 
+
 import {React, useEffect, useState} from 'react'
 import Header from '../components/Header'
-import Map from '../components/maps/Map'
+import MapComponent from '../components/maps/Map'
 
 function page() { 
 
@@ -21,7 +22,7 @@ function page() {
       </Head>
 
       <Header></Header>
-      <Map></Map>
+      <MapComponent></MapComponent>
       {console.log('canLoadMap is ' + canLoadMap)}
       {canLoadMap ? console.log('rendering Map') : console.log('not renderting Map')}
     </div>
