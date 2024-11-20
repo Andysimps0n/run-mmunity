@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation'
 
 
 
-function Header() {
+function Header(props) {
   const router = useRouter()
 
   return (
-    <div className="header-outer-container  ">
+    <div className={` ${props.component == "map" ? 'mapHeader' : null} header-outer-container`}>
       <div className="header-wrapper ">
         <div onClick={()=>{router.push('/')}} className="header-elements">Home</div>
         <div onClick={()=>{router.push('/join')}} className="header-elements">Join</div>

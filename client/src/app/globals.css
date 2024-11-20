@@ -186,7 +186,7 @@ a {
   position: sticky;
   top: 0;
   margin: 0 auto 15vh auto;
-  width: 90vw;
+  width: 100vw;
   height: 8vh;
   z-index: 999;
   display: flex;
@@ -609,13 +609,15 @@ input, textarea {
   color: #EE4266;
 }
 
+.mapHeader {
+  width: 100vw;
+  margin: 0;
+}
+
 .kakaoMap {
   width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
+  height: 92vh;
+  margin: 0 auto;
 }
 
 .map-outermost-container {
@@ -625,9 +627,3 @@ input, textarea {
   box-sizing: border-box;
 }
 
-.box1 {
-  width: 200px;
-  height: 200px;
-  background-color: #71002B;
-  z-index: 8976;
-}
