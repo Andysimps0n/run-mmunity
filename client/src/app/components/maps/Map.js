@@ -4,7 +4,7 @@ import {React, useEffect, useState} from 'react'
 import { Map, CalculatePolylineDistanceStyle, Polyline, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import Script from 'next/script';
 
-function MapComponent() {
+function MapComponent(props) {
 
   const [isDrawing, setIsDrawing] = useState(false)
   const [clickLine, setClickLine] = useState([])
@@ -56,9 +56,9 @@ function MapComponent() {
       <Map 
         center={{lat : 37.274221, lng : 127.056583}}
         className='kakaoMap'
-        onClick={handleClick}
-        onMouseMove={handleMouseMove}
-      ></Map>
+        onClick={props.isDrawingMode ? handleClick : null}
+        onMouseMove={props.isDrawingMode ? handleMouseMove : null}
+      >
 
 
       <Polyline
@@ -74,7 +74,7 @@ function MapComponent() {
       {paths.map((path)=> {
         <CustomOverlayMap
           key={`dot-${path.lat}, ${path.lng}`}
-          position={push}
+          position={path}
           zIndex={1}
         >
           <span className="dot"></span>
@@ -84,11 +84,46 @@ function MapComponent() {
 
       {paths.lengtsh > 1 && distances.slice(1, distances.length).map((distance,index)=>(
         <CustomOverlayMap
-          key={`distance-${}`}
-
-        ></CustomOverlayMap>
+            key={`distance-${paths[index + 1].lat},${paths[index + 1].lng}`}
+            position={paths[index + 1]}
+            yAnchor={1}
+            zIndex={2}
+          >
+          {!isDrawing && distances.length === index + 2 ? (
+            <DistanceInfo distance={distance} />
+          ) : (
+            <div className="dotOverlay">
+              거리 <span className="number">{distance}</span>m
+            </div>
+          )}
+        </CustomOverlayMap>
       ))}
-      
+
+
+
+        <Polyline
+          path={isDrawing ? [paths[paths.length - 1], mousePosition] : []}
+          strokeWeight={3} // 선의 두께입니다
+          strokeColor={"#db4040"} // 선의 색깔입니다
+          strokeOpacity={0.5} // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+          strokeStyle={"solid"} // 선의 스타일입니다
+          onCreate={setMoveLine}
+        />
+
+
+        {isDrawing && (
+          <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
+            <div className="dotOverlay distanceInfo">
+              {" "}
+              <span className="number">
+                {Math.round(clickLine.getLength() + moveLine.getLength())}
+              </span>
+              m
+            </div>
+          </CustomOverlayMap>
+        )}
+
+      </Map>
     </>
   )
 }

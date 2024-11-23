@@ -101,7 +101,7 @@ body::-webkit-scrollbar {
 
 
 .border {
-  border: 1px rgb(255, 251, 0) solid;
+  border: 1px rgb(255, 0, 0) solid;
 }
 
 .subtitle-wrapper {
@@ -627,3 +627,70 @@ input, textarea {
   box-sizing: border-box;
 }
 
+
+.map-side-bar-outer-container {
+  width: 15vw;
+  height: 92vh;
+
+  position: absolute;
+  top: 8vh;
+  left: 0vw;
+  z-index: 990;
+
+  background-color: white;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+
+  transition: all 0.2s;
+}
+
+.icons {
+  color: #000000;
+
+}
+
+#menu-icon {
+  font-size: 50px;
+}
+
+.menu-icon-container {
+  width: 90%;
+  margin: 10px auto;
+
+  display: flex;
+  align-items:center;
+  justify-content: right;
+}
+
+.menu-off {
+  left: -11vw;
+}
+
+.sidebar-wrapper {
+  width: 83%;
+  height: 80%;
+  margin: 30px auto;
+}
+
+.sidebar-element {
+  width: 100%;
+  height: 9%;
+
+  margin: auto;
+  margin-bottom: 3vh;
+  background-color:#cf3c75;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.distanceInfo {
+  background-color: #000000;
+  border-radius: 5px;
+  padding: 7px;
+  position: absolute;
+  left: 13px;
+  font-weight: 600;
+}
