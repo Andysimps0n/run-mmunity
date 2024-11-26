@@ -1,5 +1,9 @@
+'use client'
+
 import "./globals.css";
-import Comunitee from "./pages/Comunitee";
+import store from "./store";
+import { Provider } from "react-redux";
+
 
 import {Poppins} from 'next/font/google'
 const poppins = Poppins({
@@ -13,7 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={poppins.className}>
         <>
-        {children}
+          <Provider store={store}>
+            {children}
+          </Provider>
         </>
       </body>
     </html>

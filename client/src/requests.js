@@ -36,3 +36,7 @@ export async function requestLike(data) {
   const response = await axios.post(url, data)
   return response
 }
+
+export async function requestSaveRoute(data) {
+  const url = `http://localhost:4000/route/save`;
+}

@@ -1,40 +1,72 @@
-"use client"
+'use client'
 
 import {React, useEffect, useState} from 'react'
 import { Map, CalculatePolylineDistanceStyle, Polyline, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import Script from 'next/script';
 
+
+import { addValueToMapObj, resetMapObj } from '@/app/slices';
+import store from '@/app/store';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+
 function MapComponent(props) {
 
   const [isDrawing, setIsDrawing] = useState(false)
-  const [clickLine, setClickLine] = useState([])
-  const [paths, setPaths] = useState([])
-  const [distances, setDistances] = useState([])
   const [mousePosition, setMousePosition] = useState({lat:0, lng:0,})
   const [moveLine, setMoveLine] = useState()
+  const [onCheckPoint, setOnCheckPoint] = useState(false)
+  const [clickLine, setClickLine] = useState([])
+
+  const dispatch = useDispatch()
+  const paths = useSelector((state) => state.mapInfo.paths);
+  const distances = useSelector((state) => state.mapInfo.distances); 
   
+  const initMapObj = () => {
+    store.dispatch(resetMapObj({ field: 'paths' }));
+    store.dispatch(resetMapObj({ field: 'distances' }));
+  };
+
+
   const handleClick = (_map, mouseEvent) => {
 
-    // Re-init the map objects
     if (isDrawing == false) {
-      setDistances([])
-      setPaths([])
+      initMapObj();
     }
 
-    // Editing arrays using destructor
-    setPaths((prev) => [
-      ...prev,
-      {
+    
+
+    let clickedObj = {
+      lat : mouseEvent.latLng.getLat(),
+      lng : mouseEvent.latLng.getLng(),
+    }
+
+    let newDistanceElement = Math.round(clickLine.getLength() + moveLine.getLength())
+
+    store.dispatch(addValueToMapObj({ field : "paths" , value :  clickedObj}))
+    store.dispatch(addValueToMapObj({ field : "distances" , value :  newDistanceElement}))
+    
+    setIsDrawing(true)
+  };
+
+  const handleRightClick = (_map, mouseEvent) => {
+    
+    if (isDrawing == true) {
+      
+      let clickedObj = {
         lat : mouseEvent.latLng.getLat(),
         lng : mouseEvent.latLng.getLng(),
       }
-    ])
 
-    setDistances((prev)=> [
-      ...prev,
-      Math.round(clickLine.getLength() + moveLine.getLength()),
-    ])
-    setIsDrawing(true)
+      let newDistanceElement = Math.round(clickLine.getLength() + moveLine.getLength())
+
+      store.dispatch(addValueToMapObj({ field : "paths" , value :  clickedObj}))
+      store.dispatch(addValueToMapObj({ field : "distances" , value :  newDistanceElement}))
+      
+      setIsDrawing(false)
+      setOnCheckPoint(true)
+    }
   }
 
   const handleMouseMove = (_map, mouseEvent) => {
@@ -44,11 +76,6 @@ function MapComponent(props) {
     })
   }
 
-  const handleCancle = (_map) => {
-    setIsDrawing(false)
-    setDistances([])
-    setPaths([])
-  }
 
   return (
     <>
@@ -57,19 +84,21 @@ function MapComponent(props) {
         center={{lat : 37.274221, lng : 127.056583}}
         className='kakaoMap'
         onClick={props.isDrawingMode ? handleClick : null}
-        onMouseMove={props.isDrawingMode ? handleMouseMove : null}
+        onMouseMove={props.isDrawingMode && isDrawing? handleMouseMove : null}
+        onRightClick={props.isDrawingMode ? handleRightClick : null}
       >
 
-
+      {props.isDrawingMode ? 
       <Polyline
-        path={paths}
-        strokeWeight={3}
-        strokeColor={"#db4040"}
-        strokeOpacity={1}
+      path={paths}
+      strokeWeight={3}
+      strokeColor={"#e72f76"}
+      strokeOpacity={1}
         strokeStyle={'solid'}
         onCreate={setClickLine}
-      ></Polyline>
-
+        ></Polyline>
+      : null}
+        
 
       {paths.map((path)=> {
         <CustomOverlayMap
@@ -96,36 +125,49 @@ function MapComponent(props) {
               거리 <span className="number">{distance}</span>m
             </div>
           )}
-        </CustomOverlayMap>
+      </CustomOverlayMap>
       ))}
 
 
-
+      {props.isDrawingMode ?
         <Polyline
-          path={isDrawing ? [paths[paths.length - 1], mousePosition] : []}
-          strokeWeight={3} // 선의 두께입니다
-          strokeColor={"#db4040"} // 선의 색깔입니다
-          strokeOpacity={0.5} // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-          strokeStyle={"solid"} // 선의 스타일입니다
-          onCreate={setMoveLine}
+        path={isDrawing ? [paths[paths.length - 1], mousePosition] : []}
+        strokeWeight={3} // 선의 두께입니다
+        strokeColor={"#e72f76"} // 선의 색깔입니다
+        strokeOpacity={0.5} // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+        strokeStyle={"solid"} // 선의 스타일입니다
+        onCreate={setMoveLine}
         />
+        : null}
 
 
-        {isDrawing && (
+        {isDrawing && props.isDrawingMode && (
           <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
             <div className="dotOverlay distanceInfo">
-              {" "}
+            {" "}
               <span className="number">
-                {Math.round(clickLine.getLength() + moveLine.getLength())}
+              {Math.round(clickLine.getLength() + moveLine.getLength())}
               </span>
               m
-            </div>
+              </div>
           </CustomOverlayMap>
         )}
-
+        
+        {onCheckPoint && props.isDrawingMode && (
+          <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
+          <div className="dotOverlay distanceInfo">
+              {" "}
+              <span className="number">
+              {Math.round(clickLine.getLength() + moveLine.getLength())}
+              </span>
+              m
+              </div>
+          </CustomOverlayMap>
+        )}
+      
       </Map>
-    </>
-  )
-}
-
-export default MapComponent
+      </>
+    )
+  }
+  
+  export default MapComponent
