@@ -23,6 +23,7 @@ function MapSideBar(props) {
 
   const handleSaveRoute = () => {
     console.log(paths)
+    props.setIsSavingRoute(true)
     // const response = requestSaveRoute(data)
   }
   
@@ -40,7 +41,7 @@ function MapSideBar(props) {
       <div className="sidebar-wrapper">
 
         <div className="sidebar-element" onClick={() => {oncancel()}}>{props.isDrawingMode ? "Cancle" : "Create Route"}</div>
-        {props.isDrawingMode ? <div className="sidebar-element" onClick={()=>{handleSaveRoute(); oncancel()}}>Save route</div> : null}
+        {props.isDrawingMode ? <div className="sidebar-element" onClick={()=>{handleSaveRoute()}}>Save route</div> : null}
 
 
        <div className="sidebar-element" onClick={()=>{props.setIsGetRouteModal(true)}}>Get Route</div>

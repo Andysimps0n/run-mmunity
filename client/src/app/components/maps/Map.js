@@ -75,6 +75,7 @@ function MapComponent(props) {
       lng : mouseEvent.latLng.getLng()
     })
   }
+  
 
 
   return (
@@ -141,28 +142,36 @@ function MapComponent(props) {
         : null}
 
 
-        {isDrawing && props.isDrawingMode && (
-          <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
-            <div className="dotOverlay distanceInfo">
-            {" "}
-              <span className="number">
-              {Math.round(clickLine.getLength() + moveLine.getLength())}
-              </span>
-              m
-              </div>
-          </CustomOverlayMap>
-        )}
-        
-        {onCheckPoint && props.isDrawingMode && (
-          <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
+      {isDrawing && props.isDrawingMode && (
+        <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
           <div className="dotOverlay distanceInfo">
-              {" "}
-              <span className="number">
-              {Math.round(clickLine.getLength() + moveLine.getLength())}
-              </span>
-              m
-              </div>
-          </CustomOverlayMap>
+          {" "}
+            <span className="number">
+            {Math.round(clickLine.getLength() + moveLine.getLength())}
+            </span>
+            m
+            </div>
+        </CustomOverlayMap>
+      )}
+        
+      {onCheckPoint && props.isDrawingMode && (
+        <CustomOverlayMap position={mousePosition} yAnchor={1} zIndex={2}>
+        <div className="dotOverlay distanceInfo">
+            {" "}
+            <span className="number">
+            {Math.round(clickLine.getLength() + moveLine.getLength())}
+            </span>
+            m
+            </div>
+        </CustomOverlayMap>
+      )}
+
+      {!props.isDrawingMode? (
+        null
+        ) : (
+          <div className="dotOverlay">
+            거리
+          </div>
         )}
       
       </Map>
