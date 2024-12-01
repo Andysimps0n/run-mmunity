@@ -23,3 +23,6 @@ app.use('/user', routeUser)
 
 const routerpost = require('./routes/Post')
 app.use('/post', routerpost)
+
+const routeRoute = require('./routes/Route.js')
+app.use('/route', routeRoute)

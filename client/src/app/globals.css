@@ -811,3 +811,7 @@ input, textarea {
   align-items: center;
   justify-content: center;
 }
+
+.distances {
+  background-color: black;
+}

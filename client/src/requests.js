@@ -39,4 +39,14 @@ export async function requestLike(data) {
 
 export async function requestSaveRoute(data) {
   const url = `http://localhost:4000/route/save`;
+
+  const response = await axios.post(url, data)
+  return response
+}
+
+export async function requestGetRoutes() {
+  const url = `http://localhost:4000/route/all`;
+
+  const response = await axios.get(url)
+  return response
 }

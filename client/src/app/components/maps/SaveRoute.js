@@ -3,13 +3,26 @@ import React from 'react'
 import store from '@/app/store';
 
 import { addValueToMapObj, resetMapObj } from '@/app/slices';
+import { requestSaveRoute } from '@/requests';
+import { useSelector } from 'react-redux';
 
 function SaveRoute(props) {
+
+  const paths = useSelector((state)=> state.mapInfo.paths)
+  const distances = useSelector((state)=> state.mapInfo.distances)[2]
+  const routeObj = {
+    paths,
+    distances,
+  }
+
   const onSave = () => {
+    console.log(routeObj)
+    requestSaveRoute(routeObj)
     props.setIsDrawingMode(!false)
     store.dispatch(resetMapObj({ field: 'paths' }));
     store.dispatch(resetMapObj({ field: 'distances' }));
     props.setIsSavingRoute(false)
+
   }
 
   return (
