@@ -19,6 +19,7 @@ function GetRouteModal(props) {
 
 
 
+
   return (
     <div className='getRouteModal-outer-container'>
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100&icon_names=close,menu" rel="stylesheet" />
@@ -31,7 +32,11 @@ function GetRouteModal(props) {
           {
             routes.map((e, i)=>{
               return (
-                <Route key={i} data={e}></Route>
+                <Route 
+                  setIsDrawingMode={props.setIsDrawingMode}
+                  setIsGetRouteModal={props.setIsGetRouteModal}
+                  key={i}
+                  data={e}></Route>
               )
             })
           }

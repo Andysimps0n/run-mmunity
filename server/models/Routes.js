@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes)=>{
       type : DataTypes.INTEGER,
       allowNull : true
     },
+    name : {
+      type : DataTypes.STRING,
+      allowNull : false
+    }
   })
   return Routes
 }

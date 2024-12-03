@@ -27,7 +27,11 @@ function page() {
         ></MapSideBar>
       
       {isSavingRoute ? <SaveRoute setIsDrawingMode={setIsDrawingMode} setIsSavingRoute={setIsSavingRoute}></SaveRoute> : null}
-      {isGetRouteModal ? <GetRouteModal setIsGetRouteModal={setIsGetRouteModal}></GetRouteModal> : null}
+      {isGetRouteModal ? <GetRouteModal
+        setIsGetRouteModal={setIsGetRouteModal}
+        setIsSavingRoute={setIsSavingRoute}
+        setIsDrawingMode={setIsDrawingMode}
+        ></GetRouteModal> : null}
     </div>
     
   )

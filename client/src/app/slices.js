@@ -17,13 +17,22 @@ export const mapInfo = createSlice({
         resetMapObj : (state, action) => {
             const { field } = action.payload;
             state[field] = [];
+        },
+        hardSetMapObj : (state, action) => {
+            const { obj } = action.payload;
+            {state.paths ? state.paths = [] : null}
+            {state.distances ? state.distances = [] : null}
+
+            state.paths = obj.paths   
+            state.distances = obj.distances 
+
         }
     }
 })
 
 
 // Export actions and reducer
-export const { addValueToMapObj,resetMapObj } = mapInfo.actions
+export const { addValueToMapObj,resetMapObj, hardSetMapObj } = mapInfo.actions
 
 
 export default mapInfo.reducer

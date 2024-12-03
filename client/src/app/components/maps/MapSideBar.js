@@ -22,9 +22,11 @@ function MapSideBar(props) {
   }
 
   const handleSaveRoute = () => {
-    console.log(paths)
-    props.setIsSavingRoute(true)
-    // const response = requestSaveRoute(data)
+    if (paths.length > 1) {
+      props.setIsSavingRoute(true) 
+    } else {
+      window.alert("Please select two or more points")
+    }
   }
   
 
