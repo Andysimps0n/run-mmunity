@@ -15,9 +15,8 @@ function Comunitee() {
            the people living in one particular area or people who are considered as a unit because of their common interests, social group, or nationality          </div>
         </div>
         <div className="button-container-right ">
-            <div className="button-wrapper ">
+            <div className="button-wrapper2">
               <div onClick={()=>{router.push('/login')}} className="button1 no-select">Sign In</div>
-              <div onClick={()=>{router.push('/register')}} className="button1 no-select">Sign Up</div>
             </div>  
         </div>
       </div>

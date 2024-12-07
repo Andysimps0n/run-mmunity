@@ -80,7 +80,6 @@ function MapComponent(props) {
 
   return (
     <>
-      <Script strategy="beforeInteractive" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ca0517e212eef9e2b05b7cb7b27e8bb4&autoload=false"></Script>
       <Map 
         center={{lat : 37.274221, lng : 127.056583}}
         className='kakaoMap'

@@ -87,6 +87,12 @@ body::-webkit-scrollbar {
   justify-content: space-between;
   flex-direction: row;
 }
+.button-wrapper2 {
+  width: 27%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
 
 .button1:active {
   transform: scale(1.1); /* Slightly enlarges the button */

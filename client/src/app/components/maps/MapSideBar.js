@@ -32,7 +32,6 @@ function MapSideBar(props) {
 
   return (
     <div className={`map-side-bar-outer-container ${isMenuOn ? null : "menu-off"}`}>
-      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100&icon_names=menu" rel="stylesheet" />
 
 
       {/* Menu Button */}
